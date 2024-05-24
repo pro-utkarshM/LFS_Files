@@ -16,4 +16,10 @@ p
 p
 w
 q
-done
+EOF
+
+# sudo mkfs.ext2 "${LFS_DISK}1"
+# sudo mkfs.ext2 "${LFS_DISK}2"
+
+sudo mkfs -t ext2 -F "${LFS_DISK}1"
+sudo mkfs -t ext2 -F "${LFS_DISK}2"
