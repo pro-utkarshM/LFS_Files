@@ -2,7 +2,7 @@
 
 export LFS=/mnt/lfs
 export LFS_TGT=x86_64-lfs-linux-gnu
-export LFS_DISK=/dev/sda
+export LFS_DISK=/dev/sdb
 
 if ! grep -q "$LFS" /proc/mounts; then
   source setupdisk.sh "$LFS_DISK"
@@ -29,8 +29,14 @@ esac
 
 
 
-cp -rf *.sh packages.csv $LFS/sources
+cp -rf *.sh chapter* packages.csv $LFS/sources
 cd "$LFS/sources"
 export PATH=$LFS/tools/bin:$PATH
 
 source download.sh
+#binutils
+for package in binutils gcc linux-api-headers glibc libstdc++; do
+  source packageinstall.sh 5 $package
+done
+
+# source packageinstall.sh 5 binutils
